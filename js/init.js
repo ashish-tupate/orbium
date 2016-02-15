@@ -156,10 +156,10 @@
             id: "000000",
             name: "DEFAULT",
             level: null
-        }
+        };
 
-        if (orbium.level_full !== undefined) {
-            orbium.packs[orbium.pack_idx].level = orbium.level_full;
+        if (orbium.levels !== undefined) {
+            orbium.packs[orbium.pack_idx].level = orbium.levels;
         } else {
             return; // No levels was found
         }
@@ -281,7 +281,7 @@
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                function(callback, element) {
+                function(callback) {
                     window.setTimeout(callback, 1000/60);
                 };
         })();

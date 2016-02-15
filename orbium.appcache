@@ -25,7 +25,7 @@ js/indicator.js
 js/init.js
 js/inspector.js
 js/lane.js
-js/level_full.js
+js/levels.js
 js/loader.js
 js/machine.js
 js/marble.js

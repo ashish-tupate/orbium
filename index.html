@@ -25,7 +25,7 @@
     <script src="js/1024x697.js"></script>
     <script src="js/1096x746.js"></script>
     <script src="js/1152x784.js"></script>
-    <script src="js/level_full.js"></script>
+    <script src="js/levels.js"></script>
 
     <script src="js/util.js"></script>
     <script src="js/sprite.js"></script>
@@ -62,9 +62,6 @@
     <script src="js/tutorial.js"></script>
     <script src="js/machine.js"></script>
     <script src="js/init.js"></script>
-
-    <!--script src="cordova-2.4.0.js"></script>
-    <script src="/usr/palm/frameworks/mojo/mojo.js" x-mojo-version="1"></script-->
 </head>
 <body>
     <div id="pane">
@@ -72,14 +69,14 @@
     </div>
 
     <div id="menu">
-        <div id="main" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="main" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
             <div id="start" style="cursor: pointer;" align="center">&nbsp;</div>
             <div id="select" style="cursor: pointer;" align="center">SELECT LVL</div>
             <div id="settings" style="cursor: pointer;" align="center">SETTINGS</div>
             <div id="about" style="cursor: pointer;" align="center">ABOUT</div>
         </div>
 
-        <div id="lvl" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="lvl" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
                 <div id="pack" style="position: absolute; left: 5%; cursor: pointer;">LEVELS: X</div>
                 <div id="nr" style="position: absolute; left: 79%;">&nbsp;</div>
                 <div id="testfill0">&nbsp;</div>
@@ -92,7 +89,7 @@
                 <div id="lvlb" style="position: absolute; left: 78%; cursor: pointer;" align="center">MENU</div>
         </div>
 
-        <div id="sett" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="sett" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
                 <div id="sound" style="cursor: pointer;" align="center">&nbsp;</div>
                 <div id="tutorial" style="cursor: pointer;" align="center">&nbsp;</div>
                 <div id="limits" style="cursor: pointer;" align="center">&nbsp;</div>
@@ -102,8 +99,8 @@
                 <div id="logo" style="position: absolute; left: 83%; width: 16%; height: 38%;" align="center">&nbsp;</div>
         </div>
 
-        <div id="abo" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
-                <div id="copy" align="center">(C) 2010 BJÖRN NILSSON</div>
+        <div id="abo" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
+                <div id="copy" align="center">(C) 2016 BJÖRN NILSSON</div>
                 <div id="filler6" align="center">&nbsp;</div>
                 <div id="support" style="cursor: pointer;" align="center">&nbsp;</div>
                 <div id="credits" style="cursor: pointer;" align="center">CREDITS</div>
@@ -111,7 +108,7 @@
                 <div id="abob" style="cursor: pointer;" align="center">BACK</div>
         </div>
 
-        <div id="dbg" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="dbg" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
                 <div id="reset" style="cursor: pointer;" align="center">RESET ALL PROGRESS</div>
                 <div id="unlock" style="cursor: pointer;" align="center">UNLOCK ALL LEVELS</div>
                 <div id="editoron" style="cursor: pointer;" align="center">ENABLE LEVEL EDITOR</div>
@@ -119,19 +116,19 @@
                 <div id="connecton" style="cursor: pointer;" align="center">CONNECT TO SERVER</div>
         </div>
 
-        <div id="lgo" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="lgo" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
                 <div id="lgob" style="position: absolute;">ORBIUM</div>
                 <div id="filler1" align="center">&nbsp;</div>
                 <div id="loading" style="position: absolute;">LOADING...</div>
-                <div id="copyright" style="position: absolute;">COPYRIGHT 2010 BJÖRN NILSSON</div>
+                <div id="copyright" style="position: absolute;">COPYRIGHT 2016 BJÖRN NILSSON</div>
         </div>
 
-        <div id="creds" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="creds" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
             <div id="info" align="center">
                 <p>
                     <span>DEVELOPMENT</span><br>
                     <span>BJÖRN NILSSON</span><br>
-                    <span><a id="contact" style="cursor: pointer; text-decoration: underline;">BNI@JSWAY.SE</a></span>
+                    <span><a id="contact" style="cursor: pointer; text-decoration: underline;">DISABLED@EXAMPLE.COM</a></span>
                 </p>
                 <p>
                     <span>GRAPHICS</span><br>
@@ -142,19 +139,19 @@
             <div id="credb" style="cursor: pointer;" align="center">BACK</div>
         </div>
 
-        <div id="edt" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="edt" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
             <div id="sav" style="position: absolute; cursor: pointer;">SAVE</div>
             <div id="tst" style="position: absolute; cursor: pointer;">TEST</div>
         </div>
 
-        <div id="fail" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="fail" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
             <div id="fai" align="center">&nbsp;</div>
             <div id="filler3" align="center">&nbsp;</div>
             <div id="retry" style="position: absolute; left: 28%; cursor: pointer;" align="center">RETRY</div>
             <div id="failb" style="position: absolute; left: 58%; cursor: pointer;" align="center">MENU</div>
         </div>
 
-        <div id="compl" style="position: absolute; top: 0px; width: 100%; visibility: hidden;">
+        <div id="compl" style="position: absolute; top: 0; width: 100%; visibility: hidden;">
             <div id="comp" align="center">&nbsp;</div>
             <div id="filler4" align="center">&nbsp;</div>
             <div id="nextl" style="position: absolute; left: 28%; cursor: pointer;" align="center">&nbsp;</div>

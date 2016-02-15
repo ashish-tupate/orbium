@@ -1,5 +1,5 @@
 (function(orbium) {
-    orbium.level_full = [
+    orbium.levels = [
         [
             "E00", "E00", "E00", "R00", "R00", "E00", "E00", "E00",
             "E00", "E00", "E00", "V00", "V00", "E00", "E00", "E00",
