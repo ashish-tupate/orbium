@@ -86,11 +86,7 @@
         };
 
         this.active = function() {
-            if (indicators.length > 0) {
-                return true;
-            }
-
-            return false;
+            return indicators.length > 0;
         };
 
         this.matches = function(check) {

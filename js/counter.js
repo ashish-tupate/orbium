@@ -29,19 +29,11 @@
         };
 
         this.isLaunchAllowed = function() {
-            if (activeMarbles < 4) {
-                return true;
-            }
-
-            return false;
+            return activeMarbles < 4;
         };
 
         this.isFallAllowed = function() {
-            if (activeMarbles < 3) {
-                return true;
-            }
-
-            return false;
+            return activeMarbles < 3;
         };
 
         this.construct.apply(this, arguments);

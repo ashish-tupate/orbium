@@ -35,11 +35,7 @@
                 this.direction = direction;
             }
 
-            if (fresh === undefined || fresh) {
-                this.fresh = true;
-            } else {
-                this.fresh = false;
-            }
+            this.fresh = !!(fresh === undefined || fresh);
 
             this.lastDockTry = null;
             this.lastTeleportDest = null;
@@ -147,7 +143,7 @@
         };
 
         this.getState = function() {
-            var state = {
+            return {
                 xpos: Math.round(this.xpos*1000)/1000,
                 ypos: Math.round(this.ypos*1000)/1000,
                 color: this.color,
@@ -155,8 +151,6 @@
                 direction: this.direction,
                 fresh: this.fresh
             };
-
-            return state;
         };
 
         this.construct.apply(this, arguments);

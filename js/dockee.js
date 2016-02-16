@@ -156,7 +156,7 @@
                 height = orbium.Marble.size*2;
             }
 
-            if (orbium.Util.withinRect(
+            return (orbium.Util.withinRect(
                 xcheck,
                 ycheck,
                 xpos,
@@ -169,21 +169,15 @@
                 this.xpos,
                 this.ypos,
                 orbium.Marble.size,
-                orbium.Marble.size)) {
-                return true;
-            }
-
-            return false;
+                orbium.Marble.size));
         };
 
         this.getState = function() {
-            var state = {
+            return {
                 pos: this.pos,
                 color: this.color,
                 frame: this.frame
             };
-
-            return state;
         };
 
         this.construct.apply(this, arguments);

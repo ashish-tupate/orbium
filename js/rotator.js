@@ -282,7 +282,7 @@
             }
 
             return launched;
-        }
+        };
 
         this.triggerLaunchDirection = function(xtap, ytap, dir) {
             if (orbium.Util.withinRect(
@@ -296,7 +296,7 @@
             }
 
             return false;
-        }
+        };
 
         this.launchPosition = function(pos) {
             var dir = pos + this.orientation;
@@ -568,10 +568,10 @@
 
             if (state.dockees !== undefined) {
                 for (i = 0, j = state.dockees.length; i < j; i++) {
-                    var dockee = state.dockees[i];
+                    var prevDockee = state.dockees[i];
 
-                    var dockee = new orbium.Dockee(this, dockee.pos,
-                        dockee.color, dockee.frame);
+                    var dockee = new orbium.Dockee(this, prevDockee.pos,
+                        prevDockee.color, prevDockee.frame);
 
                     orbium.Util.addArrayElement(dockees, dockee);
                 }

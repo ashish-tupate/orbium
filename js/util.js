@@ -41,19 +41,11 @@
     };
 
     orbium.Util.isPG = function() {
-        if (typeof Media === "function") {
-            return true;
-        }
-
-        return false;
+        return typeof Media === "function";
     };
 
     orbium.Util.isUA = function(name) {
-        if (navigator.userAgent.indexOf(name) !== -1) {
-            return true;
-        }
-
-        return false;
+        return navigator.userAgent.indexOf(name) !== -1;
     };
 
     orbium.Util.getDevicePixelRatio = function() {

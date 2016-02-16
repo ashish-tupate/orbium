@@ -89,11 +89,7 @@
 
             // Find if tutorial is enabled
             enabled = orbium.storage.readValue("tutorial");
-            if (enabled === "true") {
-                enabled = true;
-            } else {
-                enabled = false;
-            }
+            enabled = enabled === "true";
 
             if (this.checkDisableTutorial()) {
                 enabled = false;
@@ -108,18 +104,9 @@
         };
 
         this.checkDisableTutorial = function() {
-            // Disable tutorial if level_show is present
-            if (orbium.level_show !== undefined) {
-                return true;
-            }
-
             // Disable tutorial if in editor mode
-            if (orbium.Machine.editorMode) {
-                return true;
-            }
-
-            return false;
-        }
+            return !!orbium.Machine.editorMode;
+        };
 
         this.show = function() {
             showing = true;

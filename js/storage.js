@@ -3,11 +3,7 @@
         var haveStorageAPI = null;
 
         this.construct = function() {
-            if (!window.localStorage) {
-                haveStorageAPI = false;
-            } else {
-                haveStorageAPI = true;
-            }
+            haveStorageAPI = !!window.localStorage;
 
             // Storage API disabled on these platforms becouse they did not
             // support them when this code was written.

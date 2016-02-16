@@ -497,8 +497,8 @@
                 var tile = this.tiles[i];
 
                 if (tile.getState !== undefined) {
-                    var dist = tile.getState();
-                    orbium.Util.addArrayElement(state.rotators, dist);
+                    var rotatorsDist = tile.getState();
+                    orbium.Util.addArrayElement(state.rotators, rotatorsDist);
                 }
             }
 
@@ -507,8 +507,8 @@
                 var marble = this.marbles[i];
 
                 if (!marble.stale) {
-                    var dist = marble.getState()
-                    orbium.Util.addArrayElement(state.marbles, dist);
+                    var marblesDist = marble.getState();
+                    orbium.Util.addArrayElement(state.marbles, marblesDist);
                 }
             }
 
@@ -517,7 +517,7 @@
             //matcher: []
 
             return state;
-        }
+        };
 
         this.setState = function(state) {
             // Marbles

@@ -31,10 +31,10 @@
         };
 
         var setup = function() {
-            var offset = orbium.Tile.size/2-orbium.Marble.size/2;
+            var offset1 = orbium.Tile.size/2-orbium.Marble.size/2;
 
             var col1 = color;
-            var xpos1 = Math.round(that.xpos+offset);
+            var xpos1 = Math.round(that.xpos+offset1);
             var ypos1 = Math.round(that.ypos+orbium.Tile.size*0.046);
             var indicator1 = new orbium.Indicator(xpos1, ypos1, col1);
             orbium.Util.addArrayElement(indicators, indicator1);
@@ -43,7 +43,7 @@
             if (col2 === 4) {
                 col2 = 0;
             }
-            var xpos2 = Math.round(that.xpos+offset);
+            var xpos2 = Math.round(that.xpos+offset1);
             var ypos2 = Math.round(that.ypos+orbium.Tile.size*0.344);
             var indicator2 = new orbium.Indicator(xpos2, ypos2, col2);
             orbium.Util.addArrayElement(indicators, indicator2);
@@ -55,19 +55,15 @@
             if (col3 === 5) {
                 col3 = 1;
             }
-            var xpos3 = Math.round(that.xpos+offset);
-            var offset = orbium.Tile.size*0.642;
-            var ypos3 = Math.round(that.ypos+offset);
+            var xpos3 = Math.round(that.xpos+offset1);
+            var offset2 = orbium.Tile.size*0.642;
+            var ypos3 = Math.round(that.ypos+offset2);
             var indicator3 = new orbium.Indicator(xpos3, ypos3, col3);
             orbium.Util.addArrayElement(indicators, indicator3);
         };
 
         this.active = function() {
-            if (indicators.length > 0) {
-                return true;
-            }
-
-            return false;
+            return indicators.length > 0;
         };
 
         this.matches = function(col) {

@@ -126,7 +126,7 @@
                     timerGap.style.width = Math.round(w)+"px";
                 }
             }
-        }
+        };
 
         this.construct.apply(this, arguments);
     };
