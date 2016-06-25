@@ -1,22 +1,12 @@
+"use strict";
 (function(orbium) {
-    orbium.Sprite = function() {
-        this.xpos = null;
-        this.ypos = null;
-        this.width = null;
-        this.height = null;
+    orbium.Sprite = class Sprite {
+        constructor(images, xpos, ypos, width, height, zindex) {
+            // TODO For compability
+            if (images == undefined) {
+                return;
+            }
 
-        this.zindex = null;
-
-        this.images = null;
-        this.elements = null;
-
-        this.dirty = null;
-
-        this.lastx = null;
-        this.lasty = null;
-
-        orbium.Sprite.prototype.construct = function(images, xpos, ypos,
-            width, height, zindex) {
             this.xpos = xpos;
             this.ypos = ypos;
             this.width = width;
@@ -35,9 +25,31 @@
 
             this.lastx = this.xpos;
             this.lasty = this.ypos;
-        };
+        }
 
-        orbium.Sprite.prototype.destroy = function() {
+        // TODO For compability
+        construct(images, xpos, ypos, width, height, zindex) {
+            this.xpos = xpos;
+            this.ypos = ypos;
+            this.width = width;
+            this.height = height;
+
+            this.zindex = zindex;
+
+            this.images = [];
+            this.elements = [];
+
+            for (var i = 0, j = images.length; i < j; i++) {
+                this.setImage(i, images[i]);
+            }
+
+            this.dirty = true;
+
+            this.lastx = this.xpos;
+            this.lasty = this.ypos;
+        }
+
+        destroy() {
             var len = 0;
             if (orbium.has_canvas) {
                 len = this.images.length;
@@ -48,9 +60,9 @@
             for (var i = 0; i < len; i++) {
                 this.setImage(i, null);
             }
-        };
+        }
 
-        var makeElement = function(idx, image, x, y, w, h, z) {
+        makeElement(idx, image, x, y, w, h, z) {
             var id = ""+image+"_"+orbium.Util.generateUniqeString();
 
             var sprite = document.createElement("div");
@@ -76,9 +88,9 @@
             orbium.pane.appendChild(sprite);
 
             return document.getElementById(id);
-        };
+        }
 
-        orbium.Sprite.prototype.setImage = function(idx, image) {
+        setImage(idx, image) {
             if (orbium.has_canvas) {
                 if (image !== null) {
                     this.images[idx] = orbium.loader[image];
@@ -89,8 +101,8 @@
                 if (image !== null) {
                     if (this.elements[idx] === undefined ||
                         this.elements[idx] === null) {
-                        this.elements[idx] = makeElement(idx, image, this.xpos,
-                            this.ypos, this.width, this.height,    this.zindex);
+                        this.elements[idx] = this.makeElement(idx, image, this.xpos,
+                            this.ypos, this.width, this.height,	this.zindex);
                     }
 
                     this.elements[idx].style.backgroundImage = "url("+
@@ -103,9 +115,9 @@
                     }
                 }
             }
-        };
+        }
 
-        orbium.Sprite.prototype.invalidate = function() {
+        invalidate() {
             // If we are running on canvas we need to invalidate for every
             // change that modifies appearance. If we are rendering to DOM
             // we only need to invalidate on movement.
@@ -119,9 +131,9 @@
                     this.lasty = this.ypos;
                 }
             }
-        };
+        }
 
-        var lastEntry = function(idx, arr) {
+        lastEntry(idx, arr) {
             var last = true;
 
             for (var i = idx+1, j = arr.length; i < j; i++) {
@@ -132,13 +144,13 @@
             }
 
             return last;
-        };
+        }
 
-        orbium.Sprite.prototype.update = function(dt) {
+        update(dt) {
             // Default implementation does nothing
-        };
+        }
 
-        orbium.Sprite.prototype.draw = function(idx) {
+        draw(idx) {
             if (this.dirty) {
                 if (orbium.has_canvas) {
                     if (this.images[idx] !== undefined &&
@@ -150,7 +162,7 @@
                             this.width, this.height);
                     }
 
-                    if (lastEntry(idx, this.images)) {
+                    if (this.lastEntry(idx, this.images)) {
                         this.dirty = false;
                     }
                 } else if (orbium.has_dom || orbium.has_transform) {
@@ -168,11 +180,11 @@
                         }
                     }
 
-                    if (lastEntry(idx, this.elements)) {
+                    if (this.lastEntry(idx, this.elements)) {
                         this.dirty = false;
                     }
                 }
             }
-        };
+        }
     };
 })(typeof window == "object" ? window.orbium = window.orbium || {} : orbium);

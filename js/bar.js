@@ -1,48 +1,40 @@
+"use strict";
 (function(orbium) {
-    orbium.Bar = function(nr) {
-        var passed = null;
-        this.nr = null;
-
-        this.construct = function() {
-            this.nr = nr;
-            var xpos = orbium.Tile.size*this.nr;
+    orbium.Bar = class Bar extends orbium.Sprite {
+        constructor(nr) {
+            var images = ["bar"+nr];
+            var xpos = orbium.Tile.size*nr;
             var ypos = 0;
 
-            passed = false;
+            super(images, xpos, ypos, orbium.Tile.size, orbium.Bar.height, 3);
 
-            var images = ["bar"+this.nr];
-            orbium.Sprite.prototype.construct.call(this, images, xpos, ypos,
-                orbium.Tile.size, orbium.Bar.height, 3);
-        };
+            this.nr = nr;
+            this.passed = false;
+        }
 
-        this.makeSink = function() {
+        makeSink() {
             var n = this.nr+8;
-            this.setImage(0, "bar"+n);
-            this.invalidate();
-        };
+            super.setImage(0, "bar"+n);
+            super.invalidate();
+        }
 
-        this.unSink = function() {
-            this.setImage(0, "bar"+this.nr);
-            this.invalidate();
-        };
+        unSink() {
+            super.setImage(0, "bar"+this.nr);
+            super.invalidate();
+        }
 
-        this.makePassed = function() {
-            if (!passed) {
-                passed = true;
-                this.setImage(1, "timer1");
-                this.invalidate();
+        makePassed() {
+            if (!this.passed) {
+                this.passed = true;
+                super.setImage(1, "timer1");
+                super.invalidate();
             }
-        };
+        }
 
-        this.clearPassed = function() {
-            passed = false;
-            this.setImage(1, null);
-            this.invalidate();
-        };
-
-        this.construct.apply(this, arguments);
+        clearPassed() {
+            this.passed = false;
+            super.setImage(1, null);
+            super.invalidate();
+        }
     };
-
-    orbium.Bar.prototype = new orbium.Sprite();
-    orbium.Bar.prototype.constructor = orbium.Bar;
 })(typeof window == "object" ? window.orbium = window.orbium || {} : orbium);

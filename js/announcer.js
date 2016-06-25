@@ -1,18 +1,13 @@
+"use strict";
 (function(orbium) {
-    orbium.Announcer = function(count, xnr, ynr) {
-        this.construct = function() {
-            orbium.Tile.prototype.construct.call(this, ["announcer0"], count,
-                xnr, ynr);
-        };
+    orbium.Announcer = class Announcer extends orbium.Tile {
+        constructor(count, xnr, ynr) {
+            super(["announcer0"], count, xnr, ynr);
+        }
 
-        this.announceNextColor = function(nextColor) {
-            this.setImage(0, "announcer"+nextColor);
-            this.invalidate();
-        };
-
-        this.construct.apply(this, arguments);
-    };
-
-    orbium.Announcer.prototype = new orbium.Tile();
-    orbium.Announcer.prototype.constructor = orbium.Announcer;
+        announceNextColor(nextColor) {
+            super.setImage(0, "announcer"+nextColor);
+            super.invalidate();
+        }
+    }
 })(typeof window == "object" ? window.orbium = window.orbium || {} : orbium);

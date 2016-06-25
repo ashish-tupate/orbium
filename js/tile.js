@@ -1,17 +1,24 @@
+"use strict";
 (function(orbium) {
-    orbium.Tile = function() {
-        this.count = null;
-        this.xnr = null;
-        this.ynr = null;
+    orbium.Tile = class Tile extends orbium.Sprite {
+        constructor(images, count, xnr, ynr) {
+            var xpos = orbium.Tile.size*xnr;
+            var ypos = orbium.Tile.size*ynr+orbium.Bar.height;
 
-        this.variant = null;
+            super(images, xpos, ypos, orbium.Tile.size, orbium.Tile.size, 3);
 
-        this.inducesSink = null;
-        this.inducesPaths = null;
+            this.count = count;
+            this.xnr = xnr;
+            this.ynr = ynr;
 
-        this.hasPaths = null;
+            this.inducesSink = false;
+            this.inducesPaths = [false, false, false, false];
 
-        orbium.Tile.prototype.construct = function(images, count, xnr, ynr) {
+            this.hasPaths = [false, false, false, false];
+        }
+
+        // TODO For compability
+        construct(images, count, xnr, ynr) {
             this.count = count;
             this.xnr = xnr;
             this.ynr = ynr;
@@ -26,61 +33,43 @@
 
             orbium.Sprite.prototype.construct.call(this, images, xpos, ypos,
                 orbium.Tile.size, orbium.Tile.size, 3);
-        };
+        }
 
-        orbium.Tile.prototype.setBase = function(baseName) {
+        setBase(baseName) {
             if (baseName !== undefined) {
-                var idx = 0;
-
                 // Should tile have top path?
-                idx = this.count-orbium.Machine.horizTiles;
-                if (idx >= 0 &&
-                    idx < orbium.Machine.horizTiles*orbium.Machine.vertTiles &&
+                var idx = this.count-orbium.Machine.horizTiles;
+                this.hasPaths[0] = !!(idx >= 0 &&
+                    idx < orbium.Machine.horizTiles * orbium.Machine.vertTiles &&
                     orbium.machine.tiles[idx].inducesPaths[0] &&
                     this.variant !== 1 &&
-                    orbium.machine.tiles[idx].variant !== 1) {
-                    this.hasPaths[0] = true;
-                } else {
-                    this.hasPaths[0] = false;
-                }
+                    orbium.machine.tiles[idx].variant !== 1);
 
                 // Should tile have right path?
                 idx = this.count+1;
-                if (idx >= 0 &&
-                    idx < orbium.Machine.horizTiles*orbium.Machine.vertTiles &&
-                    (this.count+1)%orbium.Machine.horizTiles !== 0 &&
+                this.hasPaths[1] = !!(idx >= 0 &&
+                    idx < orbium.Machine.horizTiles * orbium.Machine.vertTiles &&
+                    (this.count + 1) % orbium.Machine.horizTiles !== 0 &&
                     orbium.machine.tiles[idx].inducesPaths[1] &&
                     this.variant !== 0 &&
-                    orbium.machine.tiles[idx].variant !== 0) {
-                    this.hasPaths[1] = true;
-                } else {
-                    this.hasPaths[1] = false;
-                }
+                    orbium.machine.tiles[idx].variant !== 0);
 
                 // Should tile have bottom path?
                 idx = this.count+orbium.Machine.horizTiles;
-                if (idx >= 0 &&
-                    idx < orbium.Machine.horizTiles*orbium.Machine.vertTiles &&
+                this.hasPaths[2] = !!(idx >= 0 &&
+                    idx < orbium.Machine.horizTiles * orbium.Machine.vertTiles &&
                     orbium.machine.tiles[idx].inducesPaths[2] &&
                     this.variant !== 1 &&
-                    orbium.machine.tiles[idx].variant !== 1) {
-                    this.hasPaths[2] = true;
-                } else {
-                    this.hasPaths[2] = false;
-                }
+                    orbium.machine.tiles[idx].variant !== 1);
 
                 // Should tile have left path?
                 idx = this.count-1;
-                if (idx >= 0 &&
-                    idx < orbium.Machine.horizTiles*orbium.Machine.vertTiles &&
-                    this.count%orbium.Machine.horizTiles !== 0 &&
+                this.hasPaths[3] = !!(idx >= 0 &&
+                    idx < orbium.Machine.horizTiles * orbium.Machine.vertTiles &&
+                    this.count % orbium.Machine.horizTiles !== 0 &&
                     orbium.machine.tiles[idx].inducesPaths[3] &&
                     this.variant !== 0 &&
-                    orbium.machine.tiles[idx].variant !== 0) {
-                    this.hasPaths[3] = true;
-                } else {
-                    this.hasPaths[3] = false;
-                }
+                    orbium.machine.tiles[idx].variant !== 0);
 
                 // First row rotators
                 if (this.count < orbium.Machine.horizTiles &&
@@ -141,17 +130,14 @@
                     frame += 15;
                 }
 
-                this.setImage(0, baseName+frame);
+                super.setImage(0, baseName+frame);
 
-                this.invalidate();
+                super.invalidate();
             }
-        };
+        }
 
-        orbium.Tile.prototype.influence = function(marble) {
+        influence(marble) {
             // Default implementation does nothing
-        };
-    };
-
-    orbium.Tile.prototype = new orbium.Sprite();
-    orbium.Tile.prototype.constructor = orbium.Tile;
+        }
+    }
 })(typeof window == "object" ? window.orbium = window.orbium || {} : orbium);
